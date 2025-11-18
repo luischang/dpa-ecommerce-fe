@@ -3,16 +3,17 @@ const routes = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/IndexPage.vue') }
+      { path: '', component: () => import('pages/IndexPage.vue') },
+      { path: 'product', component: () => import('pages/ProductPage.vue') },
     ],
   },
   {
     path: '/login',
-    component: () => import("src/components/auth/LoginForm.vue")
+    component: () => import('src/components/auth/LoginForm.vue'),
   },
   {
     path: '/register',
-    component: () => import("src/components/auth/RegisterForm.vue")
+    component: () => import('src/components/auth/RegisterForm.vue'),
   },
 
   // Always leave this as last one,
