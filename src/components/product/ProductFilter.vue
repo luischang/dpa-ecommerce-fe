@@ -7,6 +7,9 @@
       :options="categories"
       option-value="id"
       option-label="description"
+      emit-value
+      map-options
+      @update:model-value="onChange"
     />
   </div>
 </template>
@@ -28,6 +31,9 @@ export default {
     this.loadCategories()
   },
   methods: {
+    onChange(value) {
+      this.$emit('categoryChanged', value)
+    },
     loadCategories() {
       // Lógica para cargar categorías
       let endpointURL = '/api/category'

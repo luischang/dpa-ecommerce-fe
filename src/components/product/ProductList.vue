@@ -2,7 +2,7 @@
   <h6>Listado de Productos</h6>
   <div class="product-list">
     <div class="product-grid">
-      <div class="product-item" v-for="item in products" :key="item.id">
+      <div class="product-item" v-for="item in filteredProducts" :key="item.id">
         <ProductItem :product="item" />
       </div>
     </div>
@@ -25,6 +25,12 @@ export default {
   components: {
     ProductItem,
   },
+  props: {
+    categoriaFiltrada: {
+      type: Object,
+      default: null,
+    },
+  },
   data() {
     return {
       products: [],
@@ -32,6 +38,16 @@ export default {
   },
   mounted() {
     this.loadProducts()
+  },
+  computed: {
+    filteredProducts() {      
+      if (this.categoriaFiltrada) {        
+        return this.products.filter(
+          (product) => product.category.id === this.categoriaFiltrada
+        )
+      }
+      return this.products
+    },
   },
   methods: {
     loadProducts() {
